@@ -1,0 +1,61 @@
+[FRF optimization before 20.07.2022]
+//uncomment following line to define functions using outside of this scope
+//@global=1;
+
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\calibration.tdms";win -ch 1;
+newbook name:="calibration remodeling"; 
+colcopy irng:=[calibration]"Coherence"!Col(1) orng:=[calibration remodeling]Sheet1!Col(2) format:=0;
+colcopy irng:=[calibration]"Amplitude in dB"!Col(1) orng:=[calibration remodeling]Sheet1!Col(3) format:=0;
+col(C)=col(C)+65.8926;
+newbook name:="calibration0.259"; 
+window -a "book2"; 
+csetvalue formula:="(i-1)*7.8125" col:=1;
+int nn=1024;
+jj=0;
+for (ii=1;ii<=nn;ii++)   
+  {
+    if (Book2_B[ii]>=0.259) jj=jj+1;  // set coherence here
+    if (Book2_B[ii]>=0.259) wrcopy iw:=[Book2]sheet1! r1:=ii r2:=ii dr1:=jj ow:=[Book3]sheet1!//set coherence here
+  };
+window -a "book3"; 
+col(1)[L]$=frequency;
+col(2)[L]$=Coherence;
+col(3)[L]$=Amplitude;
+range r=(1,3);
+smooth iy:=r ;
+range ff=[book2]sheet1!Col(A);
+interp1 ix:=ff iy:=(Col(1),Col(4));
+window -a "book2";
+wks.addCol(optimization);
+colcopy irng:=[Book3]"Sheet1"!Col(5) orng:=[Book2]Sheet1!Col(4) format:=0;
+colcopy irng:=[Book3]"Sheet1"!Col(5) orng:=[calibration]"Amplitude in dB"!Col(1) lname:=0 comments:=0;
+range cc1=[Book1]"f0 in Hz"!Col(2);
+delete cc1;
+range cc2=[Book1]"df in Hz"!Col(2);
+delete cc2;
+range cc3=[Book1]"Coherence"!Col(2);
+delete cc3;
+range cc4=[Book1]"Amplitude in dB"!Col(2);
+delete cc4;
+range cc5=[Book1]"Phase in rad"!Col(2);
+delete cc5;
+window -a "book1";
+plotxy iy:=[Book2]Sheet1!(1,3:4) plot:=202 ogl:=<new template:=smoothFRFcurve.otpu>;
+[another]
+window -a "book1";
+expNITDM fname:="R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\calibration.tdms";
+
+
+//#calculate impedence F/V
+window -a "book2";
+wks.addCol(becomevelocity);
+wks.addCol(impedance);
+Col(E)=20*log(2*pi*col(A)/1000);
+Col(F)=Col(D)+Col(E);
+col(1)[L]$=Frequency;
+col(E)[L]$=becomevelocity; #add balance between 20log(F/a) and 20log(F/v); 
+col(F)[L]$=Impedance;
+
+window -a Graph1;
+expGraph type:=bmp path:="R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration" filename:=FRFcurve;
+save R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\FRFoptimization.opju

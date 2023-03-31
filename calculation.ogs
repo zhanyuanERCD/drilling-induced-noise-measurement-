@@ -1,0 +1,135 @@
+[Main]
+//uncomment following line to define functions using outside of this scope
+//@global=1;
+//Fraeszeit und daily_amount pro fraeser ermitteln;
+window -a "a1";
+int nn=count([a1]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a1_C[ii]==jj) tt=tt+a1_A[1];  // cutter no. Vergleichen
+    if (a1_C[ii]==jj) 
+       {
+         if (a1_B[ii] > 85) td=td+a1_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a1_C[ii]==jj) ll=ll+a1_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;//actung: [a1]Sheet2!Cell(kk,2)=tt;can be auto run in code builder or continuous script!!! 
+  //I think because in code builder []in the beginning represent the section name.
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+
+// next worksheet
+window -a "a2";
+int nn=count([a2]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a2_C[ii]==jj) tt=tt+a2_A[1];  // cutter no. Vergleichen
+    if (a2_C[ii]==jj) 
+       {
+         if (a2_B[ii] > 85) td=td+a2_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a2_C[ii]==jj) ll=ll+a2_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+
+// next worksheet
+window -a "a3";
+int nn=count([a3]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a3_C[ii]==jj) tt=tt+a3_A[1];  // cutter no. Vergleichen
+    if (a3_C[ii]==jj) 
+       {
+         if (a3_B[ii] > 85) td=td+a3_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a3_C[ii]==jj) ll=ll+a3_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+// next worksheet
+window -a "a4";
+int nn=count([a4]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a4_C[ii]==jj) tt=tt+a4_A[1];  // cutter no. Vergleichen
+    if (a4_C[ii]==jj) 
+       {
+         if (a4_B[ii] > 85) td=td+a4_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a4_C[ii]==jj) ll=ll+a4_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+newbook name:="Summary" template:=Summe.ogwu hidden:=1;
+copydata irng:=[Implantation_bed_prep]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[4];
+
+copydata irng:=[Implantation_bed_prep]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[4];
+
+copydata irng:=[Implantation_bed_prep]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[4];
+// calculate the summary time in every column of Book”Summary”
+window -a "Summe1";
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_B[ii];
+};
+Cell(5,2)=t;
+
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_C[ii];
+};
+Cell(5,3)=t;
+
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_D[ii];
+};
+Cell(5,4)=t;

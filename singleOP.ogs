@@ -1,0 +1,399 @@
+[input]
+//uncomment following line to define functions using outside of this scope
+//@global=1;
+// import tdms documents into origin and hidden the window, caution the file routine;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\calibration.tdms";win -ch 1;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\implant_bed_data_level.tdms";win -ch 1;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\Mastoiddectomy_data_level.tdms";win -ch 1;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\Antrotomy_data_level.tdms";win -ch 1;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\posteriore_tymp._data_level.tdms";win -ch 1;
+impNITDM fname:=" R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\Cochleostomy_data_level.tdms";win -ch 1;
+
+
+//build new book according to the a1 Template and hidden the windows, caution the a1.ogwu must save as the originlab user file like this “C:\Users\zhany\Documents\OriginLab\User Files\”;
+newbook name:="Implantation_bed_prep" template:=a1.ogwu hidden:=1;
+newbook name:="Mastoidectomy" template:=a1.ogwu hidden:=1;
+newbook name:="Posterior_tympanotomy" template:=a1.ogwu hidden:=1;
+newbook name:="Cochleostomy" template:=a1.ogwu hidden:=1;
+newbook name:="FRF" template:=Calib.ogwu hidden:=1;
+
+//copy the raw data columns of documents produced from tdms document to the new books, only the data is copied without the format.
+colcopy irng:=[implant_bed_data_level]"current sound level in dB"!Col(1) orng:=[Implantation_bed_prep]Sheet1!Col(2) format:=0;
+colcopy irng:=[implant_bed_data_level]"cutter no."!Col(1) orng:=[Implantation_bed_prep]Sheet1!Col(3) format:=0;
+colcopy irng:=[Mastoiddectomy_data_level]"current sound level in dB"!Col(1) orng:=[Mastoidectomy]Sheet1!Col(2) format:=0;
+colcopy irng:=[Mastoiddectomy_data_level]"cutter no."!Col(1) orng:=[Mastoidectomy]Sheet1!Col(3) format:=0;
+colcopy irng:=[posteriore_tymp._data_level]"current sound level in dB"!Col(1) orng:=[Posterior_tympanotomy]Sheet1!Col(2) format:=0;
+colcopy irng:=[posteriore_tymp._data_level]"cutter no."!Col(1) orng:=[Posterior_tympanotomy]Sheet1!Col(3) format:=0;
+colcopy irng:=[Cochleostomy_data_level]"current sound level in dB"!Col(1) orng:=[Cochleostomy]Sheet1!Col(2) format:=0;
+colcopy irng:=[Cochleostomy_data_level]"cutter no."!Col(1) orng:=[Cochleostomy]Sheet1!Col(3) format:=0;
+
+colcopy irng:=[Mastoiddectomy_data_level]"current sound level in dB"!Col(1) orng:=[Mastoidectomy]Sheet1!Col(2) format:=0;colcopy irng:=[Mastoiddectomy_data_level]"cutter no."!Col(1) orng:=[Mastoidectomy]Sheet1!Col(3) format:=0;colcopy irng:=[posteriore_tymp._data_level]"current sound level in dB"!Col(1) orng:=[Posterior_tympanotomy]Sheet1!Col(2) format:=0;colcopy irng:=[posteriore_tymp._data_level]"cutter no."!Col(1) orng:=[Posterior_tympanotomy]Sheet1!Col(3) format:=0;colcopy irng:=[Cochleostomy_data_level]"current sound level in dB"!Col(1) orng:=[Cochleostomy]Sheet1!Col(2) format:=0;colcopy irng:=[Cochleostomy_data_level]"cutter no."!Col(1) orng:=[Cochleostomy]Sheet1!Col(3) format:=0;
+
+
+colcopy irng:=[calibration]"Coherence"!Col(1) orng:=[FRF]Sheet1!Col(3) format:=0;
+colcopy irng:=[calibration]"Amplitude in dB"!Col(1) orng:=[FRF]Sheet1!Col(4) format:=0;
+colcopy irng:=[calibration]"Phase in rad"!Col(1) orng:=[FRF]Sheet1!Col(5) format:=0;
+
+window -a "a2";// active the mastoidectomy book
+page.active = 1;// active sheet1
+colcopy irng:=[Antrotomy_data_level]"cutter no."!Col(1) orng:=[Mastoidectomy]Sheet1!Col(6) format:=0;
+copy -a col(F) col(C);// place the col(F) at the end of the col(C)
+colcopy irng:=[Antrotomy_data_level]"current sound level in dB"!Col(1) orng:=[Mastoidectomy]Sheet1!Col(6) format:=0;
+copy -a col(F) col(B);
+delete col(F);
+
+//delete the raw workbooks and come bake to the startbook including the controls
+
+window -c book3;
+window -c book4;
+window -c book2;
+window -c book5;
+window -c book6;
+window -c book1;
+[calculation]
+//Fraeszeit und daily_amount pro fraeser ermitteln;
+window -a "a1";
+int nn=count([a1]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a1_C[ii]==jj) tt=tt+a1_A[1];  // cutter no. Vergleichen
+    if (a1_C[ii]==jj) 
+       {
+         if (a1_B[ii] > 85) td=td+a1_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a1_C[ii]==jj) ll=ll+a1_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;//actung: [a1]Sheet2!Cell(kk,2)=tt;can be auto run in code builder or continuous script!!! 
+  //I think because in code builder []in the beginning represent the section name.
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+
+// next worksheet
+window -a "a2";
+int nn=count([a2]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a2_C[ii]==jj) tt=tt+a2_A[1];  // cutter no. Vergleichen
+    if (a2_C[ii]==jj) 
+       {
+         if (a2_B[ii] > 85) td=td+a2_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a2_C[ii]==jj) ll=ll+a2_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+
+// next worksheet
+window -a "a3";
+int nn=count([a3]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a3_C[ii]==jj) tt=tt+a3_A[1];  // cutter no. Vergleichen
+    if (a3_C[ii]==jj) 
+       {
+         if (a3_B[ii] > 85) td=td+a3_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a3_C[ii]==jj) ll=ll+a3_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+// next worksheet
+window -a "a4";
+int nn=count([a4]Sheet1!A,1);  //Anzahl Zeilen ermitteln
+for (jj=0;jj<=24;jj++)         // Schleife ueber alle 20 Fraeser
+{
+  double tt=0;             // Fraeszeit pro Fraeser
+  double td=0;             // Fraeszeit pro Fraeser mit LAF > 85dB
+  double ll=0;             // amount of daily noise pro Fraeser
+  for (ii=1;ii<=nn;ii++)   // Schleife zur Berechnung obiger Werte
+  {
+    if (a4_C[ii]==jj) tt=tt+a4_A[1];  // cutter no. Vergleichen
+    if (a4_C[ii]==jj) 
+       {
+         if (a4_B[ii] > 85) td=td+a4_A[1];   // und LAF>85dB, dann Zeitaufloesung addieren
+       };
+    if (a4_C[ii]==jj) ll=ll+a4_D[ii];   // daily amount werte aufaddieren
+  };
+  int kk=jj+1;              // berechnete Werte in Sheet2 des Worksheets eintragen
+  page.active = 2;
+  Cell(kk,2)=tt;
+  Cell(kk,3)=td;
+  Cell(kk,4)=ll;
+};
+newbook name:="Summary" template:=Summe.ogwu hidden:=1;
+copydata irng:=[Implantation_bed_prep]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(4)[26] orng:=[Summary]Sheet1!col(2)[4];
+
+copydata irng:=[Implantation_bed_prep]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(3)[26] orng:=[Summary]Sheet1!col(3)[4];
+
+copydata irng:=[Implantation_bed_prep]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[1];
+copydata irng:=[Mastoidectomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[2];
+copydata irng:=[Posterior_tympanotomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[3];
+copydata irng:=[Cochleostomy]Sheet2!col(2)[26] orng:=[Summary]Sheet1!col(4)[4];
+// calculate the summary time in every column of Book”Summary”
+window -a "Summe1";
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_B[ii];
+};
+Cell(5,2)=t;
+
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_C[ii];
+};
+Cell(5,3)=t;
+
+Double t=0;
+for (ii=1;ii<=4;ii++)
+{
+ t=t+Summe1_D[ii];
+};
+Cell(5,4)=t;
+[plot]
+// Because I don’t know how to save the legend format with template together, and in a Page, 
+//the first layer’s default legend cited the column seems to covey to the other layers compulsorily, 
+//So I have to use this comprised way that revise the column comments.	
+window -a "a1";
+wks.col4.comment$=Implantation_bed_prep; 
+wks.col5.comment$= Implantation_bed_prep;
+window -a "a2";
+wks.col4.comment$= Mastoidectomy;
+wks.col5.comment$= Mastoidectomy;
+window -a "a3";
+wks.col4.comment$= Posterior_tympanotomy;
+wks.col5.comment$= Posterior_tympanotomy;
+window -a "a4";
+wks.col4.comment$= Cochleostomy;
+wks.col5.comment$= Cochleostomy;
+
+
+//Plot   the graph template is also need to store at the originlab user file like this
+ //“C:\Users\zhany\Documents\OriginLab\User Files\”
+ //merge graphs from all layers at current active window into a 2*2 graph and 
+ //the treat the graphs not as a unit(groupgraph=0), adjust the margin between the graphs. 
+
+plotxyz iz:=[Implantation_bed_prep]Sheet1!(1,2,3) plot:=247 ogl:=<new template:= bohrlaerm1.otpu>;
+plotxyz iz:=[Mastoidectomy]Sheet1!(1,2,3) plot:=247 ogl:=<new template:= bohrlaerm1.otpu>;
+plotxyz iz:=[Posterior_tympanotomy]Sheet1!(1,2,3) plot:=247 ogl:=<new template:= bohrlaerm1.otpu>;
+plotxyz iz:=[Cochleostomy]Sheet1!(1,2,3) plot:=247 ogl:=<new template:= bohrlaerm1.otpu>;
+window -a "a2";
+
+plotxy iy:=([Implantation_bed_prep]Sheet2!(1,4),[Mastoidectomy]Sheet2!(1,4), [Posterior_tympanotomy]Sheet2!(1,4),[Cochleostomy]Sheet2!(1,4)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+
+plotxy iy:=([Implantation_bed_prep]Sheet2!(1,5),[Mastoidectomy]Sheet2!(1,5), [Posterior_tympanotomy]Sheet2!(1,5),[Cochleostomy]Sheet2!(1,5)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+window -a "a2";
+plotxy iy:=[Summary]Sheet1!(1,2), plot:=215 ogl:=<new template:= Summetime.otpu name:=sumtime>;
+window -a "a2";
+plotxy iy:=[Summary]Sheet1!((1,4), (1,3)) plot:=215 ogl:=<new template:= LAF&totaltime>;
+window -a "a2";
+plotxy iy:=[FRF]Sheet1!(1,3), plot:=202 ogl:=<new template:=Coherence.otpu>;
+plotxy iy:=[FRF]Sheet1!(1,4), plot:=202 ogl:=<new template:=Amplitude.otpu>;
+merge_graph option:=project row:=3 col:=4 groupgraph:=0 xgap:=7 ygap:=10 keep:=1; 	
+[Haushold SPL T DATA]
+window -a "a1";
+page.active = 1;// active sheet1
+wks.addCol(optimization);
+wks.addCol(optimization);
+col(E)[L]$=SPL;
+col(F)[L]$=Time(s);
+col(G)[L]$=interG;
+dd=max(col(B));
+col(E)=data(85,int(dd),1);
+col(F)=col(E)-col(E);
+int nn=count([a1]Sheet1!B,1); 
+double zu=0;
+kk=int(dd)-85+1;
+col(G)=int(col(B));
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a1_G[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (a1_E[jj]==zu)   a1_F[jj]=a1_F[jj]+1;
+     };
+};
+col(F)=col(F)*0.128;
+wks.col5.type = 4;// set column 5 as the X axis
+
+window -a "a2";
+page.active = 1;// active sheet1
+wks.addCol(optimization);
+wks.addCol(optimization);
+col(E)[L]$=SPL;
+col(F)[L]$=Time(s);
+col(G)[L]$=interG;
+dd=max(col(B));
+col(E)=data(85,int(dd),1);
+col(F)=col(E)-col(E);
+int nn=count([a2]Sheet1!B,1); 
+double zu=0;
+kk=int(dd)-85+1;
+col(G)=int(col(B));
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a2_G[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (a2_E[jj]==zu)   a2_F[jj]=a2_F[jj]+1;
+     };
+};
+col(F)=col(F)*0.128;
+wks.col5.type = 4;// set column 5 as the X axis
+
+window -a "a3";
+page.active = 1;// active sheet1
+wks.addCol(optimization);
+wks.addCol(optimization);
+col(E)[L]$=SPL;
+col(F)[L]$=Time(s);
+col(G)[L]$=interG;
+dd=max(col(B));
+col(E)=data(85,int(dd),1);
+col(F)=col(E)-col(E);
+int nn=count([a3]Sheet1!B,1); 
+double zu=0;
+kk=int(dd)-85+1;
+col(G)=int(col(B));
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a3_G[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (a3_E[jj]==zu)   a3_F[jj]=a3_F[jj]+1;
+     };
+};
+col(F)=col(F)*0.128;
+wks.col5.type = 4;// set column 5 as the X axis
+
+
+window -a "a4";
+page.active = 1;// active sheet1
+wks.addCol(optimization);
+wks.addCol(optimization);
+col(E)[L]$=SPL;
+col(F)[L]$=Time(s);
+col(G)[L]$=interG;
+dd=max(col(B));
+col(E)=data(85,int(dd),1);
+col(F)=col(E)-col(E);
+int nn=count([a4]Sheet1!B,1); 
+double zu=0;
+kk=int(dd)-85+1;
+col(G)=int(col(B));
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a4_G[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (a4_E[jj]==zu)   a4_F[jj]=a4_F[jj]+1;
+     };
+};
+col(F)=col(F)*0.128;
+wks.col5.type = 4;// set column 5 as the X axis
+//  calculate comprehensive surgery
+newbook name:="haushold map" option:=lsname;//set long name and short name same
+col(A)[L]$=SPL;
+col(B)[L]$=Time(s);
+S1=max(a1_E);S2=max(a2_E);S3=max(a3_E);S4=max(a4_E);//max spl in every surgery step
+col(A)={S1, S2, S3, S4};
+dd=max(col(A));
+col(A)=data(85,int(dd),1);//data(min max step)
+col(B)=col(A)-col(A);
+
+int nn=count([a1]Sheet1!E,1); 
+double zu=0;
+kk=int(dd)-85+1;
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a1_E[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (hausholdmap_A[jj]==zu)   hausholdmap_B[jj]=hausholdmap_B[jj]+a1_F[jj];
+     };
+};
+
+int nn=count([a2]Sheet1!E,1); 
+double zu=0;
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a2_E[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (hausholdmap_A[jj]==zu)   hausholdmap_B[jj]=hausholdmap_B[jj]+a2_F[jj];
+     };
+};
+
+int nn=count([a3]Sheet1!E,1); 
+double zu=0;
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a3_E[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (hausholdmap_A[jj]==zu)   hausholdmap_B[jj]=hausholdmap_B[jj]+a3_F[jj];
+     };
+};
+
+int nn=count([a4]Sheet1!E,1); 
+double zu=0;
+for (ii=1;ii<=nn;ii++)         
+{
+    zu=a4_E[ii];   
+    for (jj=1;jj<=kk;jj++)
+     {
+       if (hausholdmap_A[jj]==zu)   hausholdmap_B[jj]=hausholdmap_B[jj]+a4_F[jj];
+     };
+};
+[plot haushold]
+// plot
+window -a "a1";
+plotxy iy:=[Implantation_bed_prep]Sheet1!(5,6) plot:=203 ogl:=<new template:= Haus&Column>;
+legend.text$= implantation bed;
+window -a "a1";
+plotxy iy:=[Mastoidectomy]Sheet1!(5,6) plot:=203 ogl:=<new template:= Haus&Column>;
+legend.text$= Mastoidectomy;
+window -a "a1";
+plotxy iy:=[Posterior_tympanotomy]Sheet1!(5,6) plot:=203 ogl:=<new template:= Haus&Column>;
+legend.text$= Posterior tympanotomy;
+window -a "a1";
+plotxy iy:=[Cochleostomy]Sheet1!(5,6) plot:=203 ogl:=<new template:= Haus&Column>;
+legend.text$= Cochleostomy;
+window -a "a1";
+plotxy iy:=[haushold map]Sheet1!(1,2) plot:=203 ogl:=<new template:= Haus&Column>;
+legend.text$= summary;
+[save remember revise]
+save R:\Labor_ERCD\projekte\bohrlaerm\Experimente_studien\2021_ci_studie\00_measurement_data_op\Temporary Data for Instant Demostration\summary\20.opju
