@@ -1,0 +1,67 @@
+﻿%transform the acceleration in time domain into frequency domain
+k=numel(Accraw) ; %get the how many elements in this vector
+n=k/2048; %since set 2048 elements as fourier block,calculate how many block           
+m=fix(n); %get the integer                
+t=2048*m; %get the amounts of elements for integer block            
+Acc=Accraw(1:t); %truncate the vector
+Acc=abs(Acc);%get the absolute value of acc
+Acctime= reshape(Acc,2048,[]);%reshape the vector into a matrix by 2048 elements as a column
+Accfreq=fft(Acctime,2048,1);%fft column by column  get the complex coefficients 
+acc1025=Accfreq(1025,:);%get the symmetry axis coefficients 
+Accfreq=Accfreq(1:1024,:);%get the coefficients of positive frequencies
+Accamp=abs(Accfreq);%get the amplitude 
+Accphrase= angle(Accfreq);%get the phrase
+
+
+% acceleration multiply the calibration value to get the force value in frequency domain 
+AmplitudedB=AmplitudedB+64.0824;%correct to right force sensor sensitivity 0.0225V/N
+calibrationamp=power(10,AmplitudedB/20);%get the amplitude of the calibration(F/acceleration), the raw unit of Amplitude is N/g?
+calibration=repmat(calibrationamp,1,m);%repeat m culumns of the calibration amplitude,so here is a matrix
+phaseratio= repmat(Phaseradian,1,m); %repeat m culumns of the calibration phrase so here is a matrix
+Forceamp=calibration.*Accamp;%get 1024*m matrix of force amplitue
+Forcephase=phaseratio+Accphrase;%get 1024*m matrix of force phase
+
+
+
+
+
+soundpressure=Forceamp*0.15;%Transform the force form the Newton to soundpressure;
+
+soundlevel=20*log10(soundpressure/2.0000e-05);%Transform the soundpressure  to soundpressurelevel;
+for f=0:7.8125:8000-7.8125 %get the frequency spetrum for A weighting
+Wf=(12194.^2)*f.^4/((f.^2+20.6.^2)*(f.^2+12194.^2)*sqrt((f.^2+107.7.^2)*(f.^2+737.9.^2)));% get A weighting in every frequency
+dB=20*log10(Wf)+2;%get A weighting in Sound pressure level
+n=f/7.8125+1;
+Aweighting(n)=dB;
+end
+Aweighting(1)=Aweighting(2);%Because first value equal inf, here reset it is equal 1
+Aweighting=Aweighting';%inverse the row vector to column vector
+Aweighting=repmat(Aweighting,1,m);%repeat m culumns of vector Aweighting, so here is a matrix
+dBA=soundlevel+Aweighting;% get the soundlevel matrix after A weighting
+
+% IFFT the sound pressure level from the frequency domain into time domain
+SPA=power(10,dBA/20)*(2.0000e-05);% get the sound pressure matrix from the sound pressure level,reference sound pressure 2.0000e-05 Pa  
+complexSPA=SPA.*(cos(Forcephase)+1i*sin(Forcephase));% get the complex coefficients of sound pressure in the 0 frequency+positive frequency domain
+postivef=complexSPA(2:end,:);%get the positive frequency value
+negtivef=flip(postivef);% flip the positive frequency
+negtivef=conj(negtivef);%get the conjugate complex of fliped positive frequency value,so it is the value of corresponding negative frequency domain.
+negtivef=[acc1025;negtivef];%assemble the corresponding negative frequency and  axis
+frequencySPA=[complexSPA;negtivef];%assemble the positive frequency, axis and negative frequency into completed frequency domain 
+SPAtimedomain= ifft(frequencySPA);%IFFT come back to the time domain of the Sound level
+
+%calculate the fast time-weighting of every block(0.128s)
+for c=1:m %calculate the fast time-weighting of sound pressure column by column, a column is 0.128s (fourier block size 2048*sampling time 6.25*10e-05s)
+Fastsum=0;
+Fastevery=0;
+Fastaverge=0;
+fastSPL=0;
+for n=1:2048 % in every column, calculate the exponential weighting of sound level in every time interval
+tt=exp(-(0.128-0.0000625*n)/0.125);
+Fastevery=(SPAtimedomain(n,c).^2)*tt*0.0000625;
+Fastsum=Fastsum+Fastevery;%integral of  every time interval
+end
+Fastaverge=Fastsum/0.125;
+fastSPL=10*log10(Fastaverge/(2e-05).^2);
+SPLfinal(c)=fastSPL;%get the sound pressure level of every column
+end
+SPLfinal' % display the final results
