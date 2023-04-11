@@ -15,3 +15,9 @@ the sigle measurement summary file is autosaved into summary folder(R:\Labor_ERC
                                               Summary of all measurements
 run 'input measurements into files.ogs'   iuput all sigle measurements summary into orginlab
 run the each section of 'statistics.ogs' get each statistics that we want, you can edit or add the section regarding to the amounts you want to analysis.
+
+
+                                                      Supplement
+ 'matlabcode V2.txt' is also used to transform the raw accleartion and calibration data into sound presssure level data.
+ Because the matlab can not read the .tdms file, you need to move the 'accleration'  'Amplitude of FRF' 'Phase of FRF'  to the Matlab software and become a variable.   It can be accomplished by the Matlab Console which is built-in the Originlab  with the command Pwr, e.g. pwr [Cochleostomy_data_accel.tdms]"acceleration"!Col(1) Accraw  #move file form origin to matlab, designate a variance Accraw to store the data. 
+save accelerationtest.mat #This vector save to matlab file. Then open with the Matlab.
