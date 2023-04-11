@@ -14,4 +14,4 @@ the sigle measurement summary file is autosaved into summary folder(R:\Labor_ERC
 
                                               Summary of all measurements
 run 'input measurements into files.ogs'   iuput all sigle measurements summary into orginlab
-run the each section of 'statistics.ogs' get each statistics that we want
+run the each section of 'statistics.ogs' get each statistics that we want, you can edit or add the section regarding to the amounts you want to analysis.
