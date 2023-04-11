@@ -1,0 +1,811 @@
+[Main]
+//uncomment following line to define functions using outside of this scope
+//@global=1;
+pe_cd ..;// come bace to the upper level of the current active folder
+pe_cd path:="30";  // go to the next level of the currect active folder
+pe_cd path:="../29";   //go to another folder in the same level
+pe_move move:=a2A path:="../summary";  //move book to another folder in the same level
+pe_move move:=a2 path:="../summary";
+
+c1=0;
+window -a Summe1;
+c1=Cell(5,2)+c1;
+window -a Summe1A;
+c1=Cell(5,2)+c1;
+newbook name:="Book3" template:=Summe.ogwu hidden:=1;
+[impantation bed prep drilling noise]
+window -a Summe1;
+range aa=2[1];
+window -a book1;
+range bb=2[1];
+copydata irng:=aa orng:=bb;
+window -a Summe1A;
+range aa=2[1];
+window -a book1;
+range bb=2[2];
+copydata irng:=aa orng:=bb;
+window -a Summe1B;
+range aa=2[1];
+window -a book1;
+range bb=2[3];
+copydata irng:=aa orng:=bb;
+window -a Summe1C;
+range aa=2[1];
+window -a book1;
+range bb=2[4];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1D;
+range aa=2[1];
+window -a book1;
+range bb=2[5];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1E;
+range aa=2[1];
+window -a book1;
+range bb=2[6];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1F;
+range aa=2[1];
+window -a book1;
+range bb=2[7];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1G;
+range aa=2[1];
+window -a book1;
+range bb=2[8];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1H;
+range aa=2[1];
+window -a book1;
+range bb=2[9];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1I;
+range aa=2[1];
+window -a book1;
+range bb=2[10];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1J;
+range aa=2[1];
+window -a book1;
+range bb=2[11];
+copydata irng:=aa orng:=bb;
+[mastoid drilling noise]
+window -a Summe1;
+range aa=2[2];
+window -a book1;
+range bb=3[1];
+copydata irng:=aa orng:=bb;
+window -a Summe1A;
+range aa=2[2];
+window -a book1;
+range bb=3[2];
+copydata irng:=aa orng:=bb;
+window -a Summe1B;
+range aa=2[2];
+window -a book1;
+range bb=3[3];
+copydata irng:=aa orng:=bb;
+window -a Summe1C;
+range aa=2[2];
+window -a book1;
+range bb=3[4];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1D;
+range aa=2[2];
+window -a book1;
+range bb=3[5];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1E;
+range aa=2[2];
+window -a book1;
+range bb=3[6];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1F;
+range aa=2[2];
+window -a book1;
+range bb=3[7];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1G;
+range aa=2[2];
+window -a book1;
+range bb=3[8];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1H;
+range aa=2[2];
+window -a book1;
+range bb=3[9];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1I;
+range aa=2[2];
+window -a book1;
+range bb=3[10];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1J;
+range aa=2[2];
+window -a book1;
+range bb=3[11];
+copydata irng:=aa orng:=bb;
+[postoidectomy drilling noise]
+[cochlear drilling noise]
+[drilling noise amount loop]
+for (ii=3;ii<=3;ii++)   
+{
+window -a Summe1;
+range aa=2[ii];
+window -a book1;
+range bb=2[1];
+copydata irng:=aa orng:=bb;
+window -a Summe1A;
+range aa=2[ii];
+window -a book1;
+range bb=2[2];
+copydata irng:=aa orng:=bb;
+window -a Summe1B;
+range aa=2[ii];
+window -a book1;
+range bb=2[3];
+copydata irng:=aa orng:=bb;
+window -a Summe1C;
+range aa=2[ii];
+window -a book1;
+range bb=2[4];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1D;
+range aa=2[ii];
+window -a book1;
+range bb=2[5];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1E;
+range aa=2[ii];
+window -a book1;
+range bb=2[6];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1F;
+range aa=2[ii];
+window -a book1;
+range bb=2[7];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1G;
+range aa=2[ii];
+window -a book1;
+range bb=2[8];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1H;
+range aa=2[ii];
+window -a book1;
+range bb=2[9];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1I;
+range aa=2[ii];
+window -a book1;
+range bb=2[10];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1J;
+range aa=2[ii];
+window -a book1;
+range bb=2[11];
+copydata irng:=aa orng:=bb;
+
+  };
+[drilling noise dose]
+window -a Summe1;
+range aa=2[5];
+window -a book1;
+range bb=2[1];
+copydata irng:=aa orng:=bb;
+window -a Summe1A;
+range aa=2[5];
+window -a book1;
+range bb=2[2];
+copydata irng:=aa orng:=bb;
+window -a Summe1B;
+range aa=2[5];
+window -a book1;
+range bb=2[3];
+copydata irng:=aa orng:=bb;
+window -a Summe1C;
+range aa=2[5];
+window -a book1;
+range bb=2[4];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1D;
+range aa=2[5];
+window -a book1;
+range bb=2[5];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1E;
+range aa=2[5];
+window -a book1;
+range bb=2[6];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1F;
+range aa=2[5];
+window -a book1;
+range bb=2[7];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1G;
+range aa=2[5];
+window -a book1;
+range bb=2[8];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1H;
+range aa=2[5];
+window -a book1;
+range bb=2[9];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1I;
+range aa=2[5];
+window -a book1;
+range bb=2[10];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1J;
+range aa=2[5];
+window -a book1;
+range bb=2[11];
+copydata irng:=aa orng:=bb;
+[TIME ABOVE 85 loop]
+	for (ii=3;ii<=3;ii++)   
+{
+window -a Summe1;
+range aa=3[ii];
+window -a book1;
+range bb=2[1];
+copydata irng:=aa orng:=bb;
+window -a Summe1A;
+range aa=3[ii];
+window -a book1;
+range bb=2[2];
+copydata irng:=aa orng:=bb;
+window -a Summe1B;
+range aa=3[ii];
+window -a book1;
+range bb=2[3];
+copydata irng:=aa orng:=bb;
+window -a Summe1C;
+range aa=3[ii];
+window -a book1;
+range bb=2[4];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1D;
+range aa=3[ii];
+window -a book1;
+range bb=2[5];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1E;
+range aa=3[ii];
+window -a book1;
+range bb=2[6];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1F;
+range aa=3[ii];
+window -a book1;
+range bb=2[7];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1G;
+range aa=3[ii];
+window -a book1;
+range bb=2[8];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1H;
+range aa=3[ii];
+window -a book1;
+range bb=2[9];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1I;
+range aa=3[ii];
+window -a book1;
+range bb=2[10];
+copydata irng:=aa orng:=bb;
+
+window -a Summe1J;
+range aa=3[ii];
+window -a book1;
+range bb=2[11];
+copydata irng:=aa orng:=bb;
+
+  };
+[others]	
+[household map]
+window -a hausholdmap;
+range aa=2;
+window -a book1;
+range bb=2;
+copydata irng:=aa orng:=bb;
+window -a hausholdmapA;
+range aa=2;
+window -a book1;
+range bb=3;
+copydata irng:=aa orng:=bb;
+window -a hausholdmapB;
+range aa=2;
+window -a book1;
+range bb=4;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapC;
+range aa=2;
+window -a book1;
+range bb=5;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapD;
+range aa=2;
+window -a book1;
+range bb=6;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapE;
+range aa=2;
+window -a book1;
+range bb=7;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapF;
+range aa=2;
+window -a book1;
+range bb=8;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapG;
+range aa=2;
+window -a book1;
+range bb=9;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapH;
+range aa=2;
+window -a book1;
+range bb=10;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapI;
+range aa=2;
+window -a book1;
+range bb=11;
+copydata irng:=aa orng:=bb;
+
+window -a hausholdmapJ;
+range aa=2;
+window -a book1;
+range bb=12;
+copydata irng:=aa orng:=bb;
+[how to change the bookname]
+  
+%A=%@F;   //get the folder name aXX
+n= %[%A]; // Return the length of the string
+%B =%[%A,2:n]; //get the XX(from 2nd placement in the aXX)
+
+
+
+string wn$ = page.name$; // Get the window name
+win -r %(wn$) Book3_[11]; // Rename the window name to Book3_[11]
+
+
+range rPage = [Implantation_bed_prep];
+%B =%[%(rPage.Name$),1:2];
+%A=a1
+if( "%B"=="%A")
+}
+
+
+
+[loop over the book in whole project]
+int ii=0;int jj=3;// set ii=row jj=column or similiar
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a2";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+    {ii=ii+1;
+	range aa=2[2]; // accessing the 2nd column and 2nd row, the transfer it to aa
+    window -a book1;
+    range bb=col($(jj))[ii];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+    copydata irng:=aa orng:=bb;}   // actung if, then, use{} to input a series of results
+}
+[drill no. summary implantation bed]
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a1";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=[book2]Sheet1!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   copydata irng:=aa orng:=bb}; // actung if, then, use{} to input a series of results
+  }
+}
+[haus]
+int ii=1;
+doc -e W  
+{
+string name$=page.name$; 
+%B =%[%(name$),1:4];  //!!! get the four letters:haus
+string my$="haus";// 
+%A=my$;// 
+if( "%B"=="%A")  // 
+    {ii=ii+1;
+	range aa=2; // accessing the 2nd column of haushold map worksheet
+    range bb=[book1]Sheet1!col($(ii));//set the name of the transferred haushold map worksheet
+    copydata irng:=aa orng:=bb;}   
+}
+[Summary time-dose]
+newbook name:="time_dose_formular" template:=timedose.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:3];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="Sum";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   jj=0;kk=kk+1;mm=0;nn=0;
+   for (ii=1;ii<=5;ii++)   
+   {
+   jj=ii+1;
+   mm=jj+5;
+   nn=mm+5;
+   range aa=3[ii];//
+   range bb=[timedose]Sheet1!col($(jj))[kk];//
+   range cc=4[ii];//
+   range dd=[timedose]Sheet1!col($(mm))[kk];
+   range ee=2[ii];
+   range ff=[timedose]Sheet1!col($(nn))[kk];
+   copydata irng:=cc orng:=dd; // 
+   copydata irng:=aa orng:=bb; //
+   copydata irng:=ee orng:=ff}; // 
+  }
+}
+[new drill no. summary implantation bed]
+newbook name:="Impantbed_burr_summary" template:=Implantbedbur.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a1";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=3[ii];
+   range cc=4[ii];
+   range dd=5[ii];
+   range ee=6[ii];
+   range aaa=[Implantbedbur]"time"!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   range bbb=[Implantbedbur]"time above 85dB"!col($(jj))[kk];
+   range ccc=[Implantbedbur]"amount of noise"!col($(jj))[kk];
+   range ddd=[Implantbedbur]"noise_amount per time"!col($(jj))[kk];
+   range eee=[Implantbedbur]"noise_amount per time 85dB"!col($(jj))[kk];
+   copydata irng:=aa orng:=aaa;
+   copydata irng:=bb orng:=bbb;
+   copydata irng:=cc orng:=ccc;
+   copydata irng:=dd orng:=ddd;
+   copydata irng:=ee orng:=eee
+   }; 
+   
+  }
+}
+[Mastoidectomy drill no. summary]
+newbook name:="Mastoidectomy_burr_summary" template:=Implantbedbur.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a2";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=3[ii];
+   range cc=4[ii];
+   range dd=5[ii];
+   range ee=6[ii];
+   range aaa=[Implantbedb1]"time"!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   range bbb=[Implantbedb1]"time above 85dB"!col($(jj))[kk];
+   range ccc=[Implantbedb1]"amount of noise"!col($(jj))[kk];
+   range ddd=[Implantbedb1]"noise_amount per time"!col($(jj))[kk];
+   range eee=[Implantbedb1]"noise_amount per time 85dB"!col($(jj))[kk];
+   copydata irng:=aa orng:=aaa;
+   copydata irng:=bb orng:=bbb;
+   copydata irng:=cc orng:=ccc;
+   copydata irng:=dd orng:=ddd;
+   copydata irng:=ee orng:=eee
+   }; 
+   
+  }
+}
+[Posterior_tympanotomy drill no. summary]
+newbook name:="tympanotomy_burr_summary" template:=Implantbedbur.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a3";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=3[ii];
+   range cc=4[ii];
+   range dd=5[ii];
+   range ee=6[ii];
+   range aaa=[Implantbedb2]"time"!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   range bbb=[Implantbedb2]"time above 85dB"!col($(jj))[kk];
+   range ccc=[Implantbedb2]"amount of noise"!col($(jj))[kk];
+   range ddd=[Implantbedb2]"noise_amount per time"!col($(jj))[kk];
+   range eee=[Implantbedb2]"noise_amount per time 85dB"!col($(jj))[kk];
+   copydata irng:=aa orng:=aaa;
+   copydata irng:=bb orng:=bbb;
+   copydata irng:=cc orng:=ccc;
+   copydata irng:=dd orng:=ddd;
+   copydata irng:=ee orng:=eee
+   }; 
+   
+  }
+}
+[Cochleostomy drill no. summary]
+newbook name:="Cochlear_burr_summary" template:=Implantbedbur.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a4";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=3[ii];
+   range cc=4[ii];
+   range dd=5[ii];
+   range ee=6[ii];
+   range aaa=[Implantbedb3]"time"!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   range bbb=[Implantbedb3]"time above 85dB"!col($(jj))[kk];
+   range ccc=[Implantbedb3]"amount of noise"!col($(jj))[kk];
+   range ddd=[Implantbedb3]"noise_amount per time"!col($(jj))[kk];
+   range eee=[Implantbedb3]"noise_amount per time 85dB"!col($(jj))[kk];
+   copydata irng:=aa orng:=aaa;
+   copydata irng:=bb orng:=bbb;
+   copydata irng:=cc orng:=ccc;
+   copydata irng:=dd orng:=ddd;
+   copydata irng:=ee orng:=eee
+   }; 
+   
+  }
+}	
+[haus-cochlear]
+int ii=1;
+doc -e W  
+{
+string name$=page.name$; 
+%B =%[%(name$),1:2];  //!!! get the first two letters of pagename
+string my$="a1";// 
+%A=my$;// 
+if( "%B"=="%A")  // 
+    {page.active = 1;
+    ii=ii+1;
+	range aa=6; // accessing the 6nd column of a4
+    range bb=[book1]Sheet1!col($(ii));//
+    copydata irng:=aa orng:=bb;}   
+}
+[single cohclear burr ]
+newbook name:="Cochlear_burr_summary" template:=Implantbedbur.ogwu;
+kk=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a4";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 2;
+   jj=0;kk=kk+1;
+   for (ii=1;ii<=25;ii++)   
+   {
+   jj=ii+1;
+   range aa=2[ii];//2nd column time
+   range bb=3[ii];
+   range cc=4[ii];
+   range dd=5[ii];
+   range ee=6[ii];
+   range aaa=[Cochlear_burr_summary]"time"!col($(jj))[kk];//so here jj ii is a string,not number!!!,jj need transfer to $jj !
+   range bbb=[Cochlear_burr_summary]"time above 85dB"!col($(jj))[kk];
+   range ccc=[Cochlear_burr_summary]"amount of noise"!col($(jj))[kk];
+   range ddd=[Cochlear_burr_summary]"noise_amount per time"!col($(jj))[kk];
+   range eee=[Cochlear_burr_summary]"noise_amount per time 85dB"!col($(jj))[kk];
+   copydata irng:=aa orng:=aaa;
+   copydata irng:=bb orng:=bbb;
+   copydata irng:=cc orng:=ccc;
+   copydata irng:=dd orng:=ddd;
+   copydata irng:=ee orng:=eee
+   }; 
+   
+  }
+}	
+[column max min mean median]
+max=max(col(H));
+min=min(col(H));
+median=median(col(H));
+mean=mean(col(H));
+colstats 1:5;// column statistics
+[Burr summary]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time 85dB statistics"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time 85dB statistics"!(1,3),[tympanotomy_burr_summary]"noise_amount per time 85dB statistics"!(1,3),[Cochlear_burr_summary]"noise_amount per time 85dB statistics"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time statistics"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time statistics"!(1,3),[tympanotomy_burr_summary]"noise_amount per time statistics"!(1,3),[Cochlear_burr_summary]"noise_amount per time statistics"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+[Burr summary %/TIME 85 number above 3]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time 85dB statistics1"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time 85dB statistics1"!(1,3),[tympanotomy_burr_summary]"noise_amount per time 85dB statistics1"!(1,3),[Cochlear_burr_summary]"noise_amount per time 85dB statistics1"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+[Burr summary %/TIME  number above 3]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time statistics1"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time statistics1"!(1,3),[tympanotomy_burr_summary]"noise_amount per time statistics1"!(1,3),[Cochlear_burr_summary]"noise_amount per time statistics1"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+[new plot sorted burr %/time above 3]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time statistics2"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time statistics2"!(1,3),[tympanotomy_burr_summary]"noise_amount per time statistics2"!(1,3),[Cochlear_burr_summary]"noise_amount per time statistics2"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;	
+[new plot sorted burr %/time 85 above 3]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time 85dB statistics2"!(1,3),[Mastoidectomy_burr_summary]"noise_amount per time 85dB statistics2"!(1,3),[tympanotomy_burr_summary]"noise_amount per time 85dB statistics2"!(1,3),[Cochlear_burr_summary]"noise_amount per time 85dB statistics2"!(1,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+[PLOT]
+plotxy iy:=([S1]Sheet1!(11,16),[S2]Sheet1!(11,16),[S3]Sheet1!(11,16),[S4]Sheet1!(11,16),[S5]Sheet1!(11,16)) plot:=201;
+[plot burr revised and without space ]
+plotxy iy:=([Impantbed_burr_summary - Copy]"noise_amount per time 85dB statistics2"!(9,3),[Mastoidectomy_burr_summary - Copy]"noise_amount per time 85dB statistics2"!(9,3),[tympanotomy_burr_summary - Copy]"noise_amount per time 85dB statistics2"!(9,3),[Cochlear_burr_summary - Copy]"noise_amount per time 85dB statistics2"!(9,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;
+[plot revised]
+plotxy iy:=([Impantbed_burr_summary]"noise_amount per time statistics2"!(9,3),[Mastoidectomy_burr_summary]"noise_amount per time statistics2"!(9,3),[tympanotomy_burr_summary]"noise_amount per time statistics2"!(9,3),[Cochlear_burr_summary]"noise_amount per time statistics2"!(9,3)) plot:=203 ogl:=<new template:=Amount&drill>; layer.x.inc = 2;		
+[max_burr_noise dose]
+//max value in implantbed a1
+ii=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a1";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 1;  
+   da=max(col(B));
+   rowN=list(da,col(B));//find the row index of max value da 
+   ii=ii+1; 
+   range aa=2[rowN]:4[rowN];//copy this cells: SPL(2) Burr(3) noise dose(4) 
+   range aaa=[Book4]"Sheet1"!col(2)[ii]:col(4)[ii];
+   copydata irng:=aa orng:=aaa;
+  }
+}	
+//max value in mastoid a2
+ii=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a2";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 1;  
+   da=max(col(B));
+   rowN=list(da,col(B));//find the row index of max value da 
+   ii=ii+1; 
+   range aa=2[rowN]:4[rowN];//copy this cells: SPL(2) Burr(3) noise dose(4) 
+   range aaa=[Book4]"Sheet1"!col(5)[ii]:col(7)[ii];
+   copydata irng:=aa orng:=aaa;
+  }
+}	
+//max value in postier tympotomy a3
+ii=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a3";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 1;  
+   da=max(col(B));
+   rowN=list(da,col(B));//find the row index of max value da 
+   ii=ii+1; 
+   range aa=2[rowN]:4[rowN];//copy this cells: SPL(2) Burr(3) noise dose(4) 
+   range aaa=[Book4]"Sheet1"!col(8)[ii]:col(10)[ii];
+   copydata irng:=aa orng:=aaa;
+  }
+}	
+//max value in implantbed a4
+ii=0;
+doc -e W  // loop over workbooks  {}
+{
+string name$=page.name$; //get the bookname of the active page
+%B =%[%(name$),1:2];  //!!! get the first two letters of the bookname like a1 from a1C, and tranfer it to %B(string)
+string my$="a4";// !!! which book data to extrat,set a string variable my$, set its content as a1
+%A=my$;// transfer my$ to %A
+if( "%B"=="%A")  // compare "%B""%A",actung only with "", compare string content
+ { 
+   page.active = 1;  
+   da=max(col(B));
+   rowN=list(da,col(B));//find the row index of max value da 
+   ii=ii+1; 
+   range aa=2[rowN]:4[rowN];//copy this cells: SPL(2) Burr(3) noise dose(4) 
+   range aaa=[Book4]"Sheet1"!col(11)[ii]:col(13)[ii];
+   copydata irng:=aa orng:=aaa;
+  }
+}	
+[max]
+da=max(col(B));
+rowN=list(da,col(B));
+range aa=2[rowN]:4[rowN];
+range aaa=[Book4]"Sheet1"!col(1)[1]:col(3)[1];
+copydata irng:=aa orng:=aaa;
+
+
+for (ii=1;ii<=25;ii++)   
+{
+range kk=2[ii]:13[ii];
+y=max(kk);
+Cell(ii,14)=y;
+}; 
+
+range kk=2[7]:13[7];
+y=max(kk);
+aa=list(y,kk);
